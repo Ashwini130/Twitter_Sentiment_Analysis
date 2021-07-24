@@ -11,8 +11,7 @@ public class kafkaProducer {
 
     static  {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "ip-20-0-31-221.ec2.internal:9092");
-        //props.put("bootstrap.servers", "ip-20-0-31-4.ec2.internal:9092");
+        props.put("bootstrap.servers", "host:port");
         props.put("acks", "1");  //"0" -No ack, "1" only Leader ,"all" ALL
         props.put("retries", 0);  // "0" doesn't re try ; positive value will retry
         props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
@@ -30,7 +29,7 @@ public class kafkaProducer {
 
         public static void send(String key,String message)
         {
-            producer.send(new ProducerRecord<>("Olympics",key,message)); //tweets = previous topic
+            producer.send(new ProducerRecord<>("tweets",key,message)); //tweets = previous topic
             System.out.println(key+":"+message);
         }
 
